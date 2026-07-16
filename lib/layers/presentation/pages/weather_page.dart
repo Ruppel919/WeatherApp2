@@ -24,11 +24,14 @@ class WeatherPage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Погода Алматы',
-                  //title1
-                  style: context.styles.title1.copyWith(
-                    color: context.colors.white,
+                Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Погода Алматы',
+                    //title1
+                    style: context.styles.title1.copyWith(
+                      color: context.colors.white,
+                    ),
                   ),
                 ),
 
@@ -52,6 +55,7 @@ class WeatherPage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      WboxWidget(width: 16),
                       WeatherWidget(
                         icon: Icons.cloud,
                         weatherText: 'Очень облачно',
@@ -69,12 +73,13 @@ class WeatherPage extends StatelessWidget {
                         weatherText: 'Очень облачно',
                         weatherProcent: '55%',
                       ),
+                      WboxWidget(width: 16),
                     ],
                   ),
                 ),
               ],
             ),
-            bottomWeatherSheet(),
+            BottomWeatherSheet(),
           ],
         ),
         backgroundColor: Colors.transparent,
