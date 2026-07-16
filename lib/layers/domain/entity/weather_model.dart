@@ -31,6 +31,6 @@ class WeatherModel {
   factory WeatherModel.fromJson(Map<String, dynamic> json) =>
       _$WeatherModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WeatherModeltoJson(this);
+  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
   static const jsonSchema = _$WeatherModelJsonSchema;
 }

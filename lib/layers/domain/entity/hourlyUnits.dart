@@ -12,6 +12,6 @@ class HourlyUnits {
   factory HourlyUnits.fromJson(Map<String, dynamic> json) =>
       _$HourlyUnitsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HourlyUnitstoJson(this);
+  Map<String, dynamic> toJson() => _$HourlyUnitsToJson(this);
   static const jsonSchema = _$HourlyUnitsJsonSchema;
 }

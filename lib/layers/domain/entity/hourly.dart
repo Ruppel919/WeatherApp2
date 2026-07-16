@@ -11,6 +11,6 @@ class Hourly {
 
   factory Hourly.fromJson(Map<String, dynamic> json) => _$HourlyFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HourlytoJson(this);
+  Map<String, dynamic> toJson() => _$HourlyToJson(this);
   static const jsonSchema = _$HourlyJsonSchema;
 }
