@@ -7,7 +7,7 @@ class WeatherDataSource {
 
   const WeatherDataSource(this._client);
 
-  Future<WeatherModel?> getWeather({
+  Future<WeatherModel> getWeather({
     required double latitude,
     required double longitude,
   }) async {
@@ -21,7 +21,10 @@ class WeatherDataSource {
         },
       );
       final data = response.data;
-      if (data == null) return null;
+      if (data == null) {
+        throw Exception();
+      }
+      return WeatherModel.fromJson(data);
     } catch (e) {
       throw Exception();
     }
