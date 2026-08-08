@@ -43,8 +43,10 @@ dependencies:
   get_it: ^9.2.1
 
 dev_dependencies:
+  
   flutter_test:
     sdk: flutter
+  injectable_generator: ^3.1.1
 
     
 

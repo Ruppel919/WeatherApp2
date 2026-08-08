@@ -7,8 +7,7 @@ import 'package:prosto_tipo_testovui_projekt/layers/presentation/cubit/weather_s
 class WeatherCubit extends Cubit<WeatherState> {
   final IWeatherRepo _iWeatherRepo;
 
-  WeatherCubit(this._iWeatherRepo, {required IWeatherRepo repisitory})
-    : super(WeatherInitial());
+  WeatherCubit(this._iWeatherRepo) : super(WeatherInitial());
 
   Future<void> loadWeather({
     required double latitude,
