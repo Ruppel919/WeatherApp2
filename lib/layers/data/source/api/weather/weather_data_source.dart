@@ -3,7 +3,7 @@ import 'package:prosto_tipo_testovui_projekt/layers/data/source/api/dio/dio_cons
 import 'package:prosto_tipo_testovui_projekt/layers/domain/entity/weather_model.dart';
 import 'package:prosto_tipo_testovui_projekt/layers/shared/interceptors/dio_client.dart';
 
-@lazySingleton
+@injectable
 class WeatherDataSource {
   final DioClient _client;
 

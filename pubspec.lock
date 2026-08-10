@@ -316,7 +316,7 @@ packages:
     source: hosted
     version: "3.0.0"
   injectable_generator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: injectable_generator
       sha256: "424ea884e3adc9585df0af408cb3b0de19fc2faf52b62bed8b73f3fb15a63115"

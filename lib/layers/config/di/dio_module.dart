@@ -3,12 +3,12 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class DioModule {
-  @lazySingleton
+  @injectable
   Dio get dio => Dio(
     BaseOptions(
       baseUrl: 'https://api.open-meteo.com',
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
+      connectTimeout: Duration(seconds: 10),
+      receiveTimeout: Duration(seconds: 10),
     ),
   );
 }

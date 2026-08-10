@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:prosto_tipo_testovui_projekt/layers/shared/errors/unknown_errors_exeption.dart';
 
-@lazySingleton
+@injectable
 class DioClient {
   final Dio _dio;
 

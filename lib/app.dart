@@ -12,8 +12,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          getIt<WeatherCubit>()
-            ..loadWeather(latitude: 43.2389, longitude: 76.8897),
+          getIt<WeatherCubit>()..loadWeather(latitude: 44, longitude: 77),
+
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: AppTheme.light,

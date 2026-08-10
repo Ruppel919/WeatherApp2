@@ -18,7 +18,6 @@ import '../../data/source/api/weather/weather_data_source.dart' as _i362;
 import '../../domain/repository/i_weather_repo.dart' as _i981;
 import '../../presentation/cubit/weather_cubit.dart' as _i356;
 import '../../shared/interceptors/dio_client.dart' as _i747;
-
 import 'dio_module.dart' as _i1045;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -29,16 +28,19 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
-    gh.lazySingleton<_i361.Dio>(() => dioModule.dio);
-    gh.lazySingleton<_i747.DioClient>(() => _i747.DioClient(gh<_i361.Dio>()));
-    gh.lazySingleton<_i362.WeatherDataSource>(
+    gh.factory<_i361.Dio>(() => dioModule.dio);
+    gh.factory<_i747.DioClient>(() => _i747.DioClient(gh<_i361.Dio>()));
+    gh.factory<_i362.WeatherDataSource>(
       () => _i362.WeatherDataSource(gh<_i747.DioClient>()),
     );
     gh.lazySingleton<_i981.IWeatherRepo>(
       () => _i300.WeatherRepoImpl(gh<_i362.WeatherDataSource>()),
     );
     gh.factory<_i356.WeatherCubit>(
-      () => _i356.WeatherCubit(gh<_i981.IWeatherRepo>()),
+      () => _i356.WeatherCubit(
+        gh<_i981.IWeatherRepo>(),
+        repisitory: gh<_i981.IWeatherRepo>(),
+      ),
     );
     return this;
   }
