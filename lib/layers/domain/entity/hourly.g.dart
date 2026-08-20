@@ -7,21 +7,29 @@ part of 'hourly.dart';
 // **************************************************************************
 
 Hourly _$HourlyFromJson(Map<String, dynamic> json) => Hourly(
-  time: json['time'] as String,
-  temperature2m: json['temperature2m'] as String,
+  time: (json['time'] as List<dynamic>).map((e) => e as String).toList(),
+  temperature2m: (json['temperature_2m'] as List<dynamic>)
+      .map((e) => (e as num).toDouble())
+      .toList(),
 );
 
 Map<String, dynamic> _$HourlyToJson(Hourly instance) => <String, dynamic>{
   'time': instance.time,
-  'temperature2m': instance.temperature2m,
+  'temperature_2m': instance.temperature2m,
 };
 
 const _$HourlyJsonSchema = {
   r'$schema': 'https://json-schema.org/draft/2020-12/schema',
   'type': 'object',
   'properties': {
-    'time': {'type': 'string'},
-    'temperature2m': {'type': 'string'},
+    'time': {
+      'type': 'array',
+      'items': {'type': 'string'},
+    },
+    'temperature_2m': {
+      'type': 'array',
+      'items': {'type': 'number'},
+    },
   },
-  'required': ['time', 'temperature2m'],
+  'required': ['time', 'temperature_2m'],
 };

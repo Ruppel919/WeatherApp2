@@ -4,8 +4,10 @@ part 'hourlyUnits.g.dart';
 
 @JsonSerializable(createJsonSchema: true)
 class HourlyUnits {
-  final List<DateTime> time;
-  final List<double> temperature2m;
+  final String time;
+
+  @JsonKey(name: 'temperature_2m')
+  final String temperature2m;
 
   HourlyUnits({required this.time, required this.temperature2m});
 

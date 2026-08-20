@@ -19,7 +19,7 @@ class WeatherCubit extends Cubit<WeatherState> {
         latitude: latitude,
         longitude: longitude,
       );
-      emit(WeatherLoadSuccess(weather));
+      emit(WeatherLoadSuccess(await weather));
     } catch (e) {
       emit(WeatherLoadFailure(e.toString()));
     }

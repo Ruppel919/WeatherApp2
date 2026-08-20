@@ -37,10 +37,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i300.WeatherRepoImpl(gh<_i362.WeatherDataSource>()),
     );
     gh.factory<_i356.WeatherCubit>(
-      () => _i356.WeatherCubit(
-        gh<_i981.IWeatherRepo>(),
-        repisitory: gh<_i981.IWeatherRepo>(),
-      ),
+      () => _i356.WeatherCubit(gh<_i981.IWeatherRepo>()),
     );
     return this;
   }

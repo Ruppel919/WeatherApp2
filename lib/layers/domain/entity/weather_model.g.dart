@@ -9,13 +9,13 @@ part of 'weather_model.dart';
 WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) => WeatherModel(
   latitude: (json['latitude'] as num).toDouble(),
   longitude: (json['longitude'] as num).toDouble(),
-  generationTimes: (json['generationTimes'] as num).toDouble(),
-  utcOffsetSeccond: (json['utcOffsetSeccond'] as num).toInt(),
-  timeZone: json['timeZone'] as String,
-  timeZoneAbbreviation: json['timeZoneAbbreviation'] as String,
+  generationTimeMs: (json['generationtime_ms'] as num).toDouble(),
+  utcOffsetSeconds: (json['utc_offset_seconds'] as num).toInt(),
+  timezone: json['timezone'] as String,
+  timezoneAbbreviation: json['timezone_abbreviation'] as String,
   elevation: (json['elevation'] as num).toDouble(),
   hourlyUnits: HourlyUnits.fromJson(
-    json['hourlyUnits'] as Map<String, dynamic>,
+    json['hourly_units'] as Map<String, dynamic>,
   ),
   hourly: Hourly.fromJson(json['hourly'] as Map<String, dynamic>),
 );
@@ -24,12 +24,12 @@ Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'generationTimes': instance.generationTimes,
-      'utcOffsetSeccond': instance.utcOffsetSeccond,
-      'timeZone': instance.timeZone,
-      'timeZoneAbbreviation': instance.timeZoneAbbreviation,
+      'generationtime_ms': instance.generationTimeMs,
+      'utc_offset_seconds': instance.utcOffsetSeconds,
+      'timezone': instance.timezone,
+      'timezone_abbreviation': instance.timezoneAbbreviation,
       'elevation': instance.elevation,
-      'hourlyUnits': instance.hourlyUnits,
+      'hourly_units': instance.hourlyUnits,
       'hourly': instance.hourly,
     };
 
@@ -39,47 +39,47 @@ const _$WeatherModelJsonSchema = {
   'properties': {
     'latitude': {'type': 'number'},
     'longitude': {'type': 'number'},
-    'generationTimes': {'type': 'number'},
-    'utcOffsetSeccond': {'type': 'integer'},
-    'timeZone': {'type': 'string'},
-    'timeZoneAbbreviation': {'type': 'string'},
+    'generationtime_ms': {'type': 'number'},
+    'utc_offset_seconds': {'type': 'integer'},
+    'timezone': {'type': 'string'},
+    'timezone_abbreviation': {'type': 'string'},
     'elevation': {'type': 'number'},
-    'hourlyUnits': {r'$ref': r'#/$defs/HourlyUnits'},
+    'hourly_units': {r'$ref': r'#/$defs/HourlyUnits'},
     'hourly': {r'$ref': r'#/$defs/Hourly'},
   },
   'required': [
     'latitude',
     'longitude',
-    'generationTimes',
-    'utcOffsetSeccond',
-    'timeZone',
-    'timeZoneAbbreviation',
+    'generationtime_ms',
+    'utc_offset_seconds',
+    'timezone',
+    'timezone_abbreviation',
     'elevation',
-    'hourlyUnits',
+    'hourly_units',
     'hourly',
   ],
   r'$defs': {
     'HourlyUnits': {
       'type': 'object',
       'properties': {
-        'time': {
-          'type': 'array',
-          'items': {'type': 'string', 'format': 'date-time'},
-        },
-        'temperature2m': {
-          'type': 'array',
-          'items': {'type': 'number'},
-        },
+        'time': {'type': 'string'},
+        'temperature_2m': {'type': 'string'},
       },
-      'required': ['time', 'temperature2m'],
+      'required': ['time', 'temperature_2m'],
     },
     'Hourly': {
       'type': 'object',
       'properties': {
-        'time': {'type': 'string'},
-        'temperature2m': {'type': 'string'},
+        'time': {
+          'type': 'array',
+          'items': {'type': 'string'},
+        },
+        'temperature_2m': {
+          'type': 'array',
+          'items': {'type': 'number'},
+        },
       },
-      'required': ['time', 'temperature2m'],
+      'required': ['time', 'temperature_2m'],
     },
   },
 };

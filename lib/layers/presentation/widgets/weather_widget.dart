@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prosto_tipo_testovui_projekt/layers/shared/theme/colors/app_colors.dart';
 import 'package:prosto_tipo_testovui_projekt/layers/shared/theme/utils/context_extension.dart';
 
 class WeatherWidget extends StatelessWidget {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prosto_tipo_testovui_projekt/layers/config/di/dependency_injection.dart';
-import 'package:prosto_tipo_testovui_projekt/layers/domain/repository/i_weather_repo.dart';
 import 'package:prosto_tipo_testovui_projekt/layers/presentation/cubit/weather_cubit.dart';
 import 'package:prosto_tipo_testovui_projekt/layers/presentation/cubit/weather_state.dart';
 
@@ -19,37 +17,41 @@ class WeatherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherCubit, WeatherState>(
       builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: AlignmentGeometry.topStart,
-              colors: [context.colors.fancyBlue, context.colors.transitionBlue],
+        if (state is WeatherLoadSuccess) {
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: AlignmentGeometry.topStart,
+                colors: [
+                  context.colors.fancyBlue,
+                  context.colors.transitionBlue,
+                ],
+              ),
             ),
-          ),
-          child: Scaffold(
-            body: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 16.0),
-                      child: Text(
-                        'Погода Алматы',
-                        //title1
-                        style: context.styles.title1.copyWith(
-                          color: context.colors.white,
+            child: Scaffold(
+              body: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Погода Алматы',
+                          //title1
+                          style: context.styles.title1.copyWith(
+                            color: context.colors.white,
+                          ),
                         ),
                       ),
-                    ),
 
-                    HboxWidget(height: 30),
-                    if (state is WeatherLoadSuccess) ...[
+                      HboxWidget(height: 30),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '21',
+                            '${state.weather.hourly.temperature2m.first.round()}°',
                             //title2
                             style: context.styles.title2.copyWith(
                               color: context.colors.white,
@@ -63,53 +65,60 @@ class WeatherPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ],
-                    HboxWidget(height: 25),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          WboxWidget(width: 16),
-                          WeatherWidget(
-                            icon: Icons.cloud,
-                            weatherText: 'Очень облачно',
-                            weatherProcent: '55%',
-                          ),
-                          WboxWidget(width: 10),
-                          WeatherWidget(
-                            icon: Icons.cloud,
-                            weatherText: 'Очень облачно',
-                            weatherProcent: '55%',
-                          ),
-                          WboxWidget(width: 10),
-                          WeatherWidget(
-                            icon: Icons.cloud,
-                            weatherText: 'Очень облачно',
-                            weatherProcent: '55%',
-                          ),
-                          WboxWidget(width: 16),
-                        ],
+                      HboxWidget(height: 25),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            WboxWidget(width: 16),
+                            WeatherWidget(
+                              icon: Icons.cloud,
+                              weatherText: 'Очень облачно',
+                              weatherProcent: '55%',
+                            ),
+                            WboxWidget(width: 10),
+                            WeatherWidget(
+                              icon: Icons.cloud,
+                              weatherText: 'Очень облачно',
+                              weatherProcent: '55%',
+                            ),
+                            WboxWidget(width: 10),
+                            WeatherWidget(
+                              icon: Icons.cloud,
+                              weatherText: 'Очень облачно',
+                              weatherProcent: '55%',
+                            ),
+                            WboxWidget(width: 16),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                BottomWeatherSheet(),
-              ],
-            ),
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              title: Text(
-                'Четверг 09/07/26',
-                //title1
-                style: TextStyle(color: context.colors.white),
+                    ],
+                  ),
+
+                  BottomWeatherSheet(weather: state.weather),
+                ],
               ),
-              actions: <Widget>[BurgerMenuWidget()],
-              elevation: 0,
               backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                title: Text(
+                  formatDataTime(state.weather.hourly.time.first),
+                  style: context.styles.title1,
+                ),
+                actions: <Widget>[BurgerMenuWidget()],
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+              ),
             ),
-          ),
-        );
+          );
+        }
+        return SizedBox();
       },
     );
+  }
+
+  String formatDataTime(String time) {
+    final dateTime = DateTime.parse(time);
+
+    return '${dateTime.year}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.day.toString().padLeft(2, '0')}:';
   }
 }

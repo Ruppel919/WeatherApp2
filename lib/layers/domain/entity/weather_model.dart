@@ -8,21 +8,32 @@ part 'weather_model.g.dart';
 class WeatherModel {
   final double latitude;
   final double longitude;
-  final double generationTimes;
-  final int utcOffsetSeccond;
-  final String timeZone;
-  final String timeZoneAbbreviation;
+
+  @JsonKey(name: 'generationtime_ms')
+  final double generationTimeMs;
+
+  @JsonKey(name: 'utc_offset_seconds')
+  final int utcOffsetSeconds;
+
+  final String timezone;
+
+  @JsonKey(name: 'timezone_abbreviation')
+  final String timezoneAbbreviation;
+
   final double elevation;
+
+  @JsonKey(name: 'hourly_units')
   final HourlyUnits hourlyUnits;
+
   final Hourly hourly;
 
-  WeatherModel({
+  const WeatherModel({
     required this.latitude,
     required this.longitude,
-    required this.generationTimes,
-    required this.utcOffsetSeccond,
-    required this.timeZone,
-    required this.timeZoneAbbreviation,
+    required this.generationTimeMs,
+    required this.utcOffsetSeconds,
+    required this.timezone,
+    required this.timezoneAbbreviation,
     required this.elevation,
     required this.hourlyUnits,
     required this.hourly,
@@ -32,5 +43,6 @@ class WeatherModel {
       _$WeatherModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
+
   static const jsonSchema = _$WeatherModelJsonSchema;
 }

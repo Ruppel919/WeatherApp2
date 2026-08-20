@@ -12,7 +12,9 @@ final class WeatherInitial extends WeatherState {}
 final class WeatherLoadInProgress extends WeatherState {}
 
 final class WeatherLoadSuccess extends WeatherState {
-  const WeatherLoadSuccess(Future<WeatherModel> weather);
+  final WeatherModel weather;
+
+  const WeatherLoadSuccess(this.weather);
 }
 
 final class WeatherLoadFailure extends WeatherState {
